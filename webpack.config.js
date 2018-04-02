@@ -7,23 +7,17 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   mode: 'development',
+  node: {
+    fs: 'empty' // this is intended to solve the "cant load 'fs'" when webpack imports modules
+  },
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: [ "html-loader" ]
-      }, {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            
-          }
+          loader: 'babel-loader'
         }
-      }, {
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
       }
     ]
   }
